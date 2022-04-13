@@ -1,0 +1,27 @@
+---
+title: "TrailDensity"
+author: "Marielle"
+date: '2022-04-13'
+output: html_document
+---
+##setup
+```{r setup, include=FALSE}
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+library(plotly)
+library(ggpubr)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+trails <- read.csv('data/TrailsVFlow.csv')
+str(trails)
+```
+
+##Long + clean
+```{r Makie it long and clean it up}
+trails_long <- gather(trails, flowmetric, value, DJF_mm:q90) %>%
+  filter(!is.na(value))
+head(trails_long)
+```
